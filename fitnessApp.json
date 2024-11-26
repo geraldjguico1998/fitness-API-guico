@@ -2,7 +2,7 @@
     "endpoints": {
       "login": "users/login",
       "register": "users/register",
-      "createWorkout": "/workouts/create",
+      "createWorkout": "/workouts/addWorkout",
       "getMyWorkouts": "/workouts/getMyWorkouts",
       "updateWorkout": "/workouts/updateWorkout/:id",
       "deleteWorkout": "/workouts/deleteWorkout/:id",

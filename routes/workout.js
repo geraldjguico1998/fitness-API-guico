@@ -10,7 +10,7 @@ const {
 const authMiddleware = require('../auth').verify; // Ensure proper import
 
 // Create a new workout
-router.post('/create', authMiddleware, createWorkout);
+router.post('/addWorkout', authMiddleware, createWorkout);
 
 // Get all workouts for the logged-in user
 router.get('/getMyWorkouts', authMiddleware, getMyWorkouts);
