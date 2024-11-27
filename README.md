@@ -30,7 +30,7 @@ A Node.js and Express-based API for managing user workouts.
 - **POST users/register** - Register a new user.
 
 ### Workouts (require authentication)
-- **POST /workouts/create** - Create a new workout.
+- **POST /workouts/addWorkout** - Create a new workout.
 - **GET /workouts/getMyWorkouts** - Retrieve all workouts of the logged-in user.
 - **PATCH /workouts/updateWorkout/:id** - Update a specific workout.
 - **DELETE /workouts/deleteWorkout/:id** - Delete a specific workout.
