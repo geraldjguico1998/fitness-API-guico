@@ -6,14 +6,14 @@ require("dotenv").config();
 
 const app = express();
 
-// Updated CORS settings
+// Updated CORS settings with correct origin
 const allowedOrigins = [
   "http://localhost:3000", // For local development
-  "https://your-vercel-domain.vercel.app" // Replace with your actual Vercel deployment URL
+  "https://fitness-app-client-g4wcayay9-geralds-projects-60bc6630.vercel.app" // Your actual Vercel deployment URL
 ];
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-vercel-domain.vercel.app'],
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(
-  "mongodb+srv://admin:admin123@wdc028-b461.n4ncf.mongodb.net/fitness-app?retryWrites=true&w=majority&appName=WDC028-B461",
+  process.env.MONGODB_URI || "mongodb+srv://admin:admin123@wdc028-b461.n4ncf.mongodb.net/fitness-app?retryWrites=true&w=majority&appName=WDC028-B461",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -42,8 +42,9 @@ mongoose.connection.once("open", () =>
 );
 
 if (require.main === module) {
-  app.listen(process.env.PORT || 5000, () => {
-    console.log(`API is now online on port ${process.env.PORT || 5000}`);
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`API is now online on port ${PORT}`);
   });
 }
 
