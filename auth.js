@@ -17,7 +17,7 @@ module.exports.verify = (req, res, next) => {
   console.log("Received token:", token);
 
   // Verify the token
-  jwt.verify(token, "Fitness123", (err, decodedToken) => {
+  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
     if (err) {
       console.error("Token verification error:", err.message);
       return res.status(403).json({ auth: "Failed", message: "Invalid or expired token." });
