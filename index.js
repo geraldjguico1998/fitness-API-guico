@@ -12,13 +12,12 @@ const allowedOrigins = [
   "https://your-vercel-domain.vercel.app" // Replace with your actual Vercel deployment URL
 ];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    methods: ["GET", "POST", "PATCH", "DELETE"], // Specify allowed HTTP methods
-    credentials: true // Allow credentials if needed
-  })
-);
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://your-vercel-domain.vercel.app'],
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
