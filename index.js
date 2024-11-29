@@ -6,16 +6,32 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(cors()); // Enable CORS for all origins
+// Updated CORS settings
+const allowedOrigins = [
+  "http://localhost:3000", // For local development
+  "https://your-vercel-domain.vercel.app" // Replace with your actual Vercel deployment URL
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PATCH", "DELETE"], // Specify allowed HTTP methods
+    credentials: true // Allow credentials if needed
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb+srv://admin:admin123@wdc028-b461.n4ncf.mongodb.net/fitness-app?retryWrites=true&w=majority&appName=WDC028-B461", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+  "mongodb+srv://admin:admin123@wdc028-b461.n4ncf.mongodb.net/fitness-app?retryWrites=true&w=majority&appName=WDC028-B461",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
-//Routes Middleware
+// Routes Middleware
 const workoutRoutes = require("./routes/workouts");
 const userRoutes = require("./routes/users");
 
